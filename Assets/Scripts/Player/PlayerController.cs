@@ -6,8 +6,10 @@ public class PlayerController : MonoBehaviour
 {
 
 	public float speed;
-	public float rotationSpeed;
+	public float y;
 	private CharacterController cc;
+
+	private Vector3 moveDirection = Vector3.zero;
 
 	void Start()
 	{
@@ -16,18 +18,14 @@ public class PlayerController : MonoBehaviour
 
 	void Update()
 	{
-		float horizontalInput = Input.GetAxis("Horizontal");
-		float verticalInput = Input.GetAxis("Vertical");
-		
-		Vector3 moveDirectionForward = transform.forward * verticalInput;
 
-		transform.Rotate(0, horizontalInput * rotationSpeed, 0);
+		moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical"));
+		moveDirection = transform.TransformDirection(moveDirection);
+		moveDirection = moveDirection * speed;
 
-		Vector3 direction = (moveDirectionForward).normalized;
-		Vector3 distance = direction * speed * Time.deltaTime;
+		moveDirection.y = y;
 
-
-		cc.Move(distance);
+		cc.Move(moveDirection * Time.deltaTime);
 
 	}
 
