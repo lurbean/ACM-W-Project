@@ -32,13 +32,12 @@ public class PlayerController : MonoBehaviour
 	void OnControllerColliderHit(ControllerColliderHit hit)
 	{
 
-		//print("Collisding with" + hit.collider.gameObject.name);
+	
 
 	}
 	void OnCollisionEnter(Collision c)
 	{
-
-		//print("Player stopped colliding with" + c.collider.gameObject.name);
+        
 
 
 	}
